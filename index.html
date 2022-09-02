@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="utf-8">
+	<title>Школа молодых ученых</title>
+	<style>
+        body {
+            margin: 0;
+            min-width: 1800px;
+            min-height: 1800px;
+        }
+
+		* {
+			box-sizing: borger-box;
+		}
+
+		h1, h2, h3, h4, h5, h6 {
+			margin: 0;
+		}
+
+		/* Container */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            min-width: 1200px;
+            margin: 0 auto;
+        }
+
+		.intro {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			width: 100%;
+			height: 100vh;
+			background: url("assets/images/logo.jpg") center no-repeat;
+			-webkit-background-size: cover;
+			background-size: cover;
+		}
+
+		.intro__inner {
+			width: 100%;
+			max-width: 880px;
+			min-width: 880px;
+			margin: 0 auto;
+			text-align: center;
+		}
+
+		.intro__title {
+			color: #fff;
+			font-size: 150px;
+			font-weight: 700;
+			text-transform: uppercase;
+			line-height: 1;
+		}
+
+		.intro__title:after {
+			content: "";
+			display: block;
+			width: 60px;
+			height: 3px;
+			margin: 60px auto;
+			background-color: #fff;
+		}
+
+		/* Header */
+		.header {
+			width: 100%;
+			padding-top: 30px;
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			z-index: 1000;
+		}
+
+		.header__inner {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+
+		.header__logo {
+			text-transform: uppercase;
+			font-size: 18px;
+			color: #fff;
+		}
+
+		.nav {
+			font-size: 14px;
+			text-transform: uppercase;
+		}
+
+		.nav__link {
+			display: inline-block;
+			vertical-align: top;
+			margin: 0 15px;
+			position: relative;
+			color: #fff;
+			text-decoration: none;
+			transition: color .1s linear;
+		}
+
+		.nav__link:after {
+			content: "";
+			display: block;
+			width: 100%;
+			height: 3px;
+			background-color: #ffffff;
+			opacity: 0;
+			position: absolute;
+			top: 100%;
+			left: 0;
+			z-index: 1;
+			transition: opacity .5s linear;
+		}
+
+		.nav__link:hover {
+			color: #000000;
+		}
+
+			.nav__link:hover:after,
+			.nav__link.active:after {
+				opacity: 1;
+			}
+
+		.nav__link.active {
+			color: #ffffff;
+		}
+
+		.slider {
+			width: 100%;
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			z-index: 1;
+		}
+
+		.slider__inner {
+			display: flex;
+			justify-content: space-between;
+		}
+
+		.slider__item {
+			width: 23%;
+			padding: 20px 0;
+			position: relative;
+			border-top: 3px solid #fff;
+			opacity: .7;
+			font-size: 18px;
+			color: #fff;
+			text-transform: uppercase;
+		}
+
+		.slider__item.active {
+			opacity: 1;
+		}
+
+		.slider__item.active:before {
+			content: "";
+			display: block;
+			width: 70px;
+			height: 3px;
+			background-color: DarkCyan;
+			position: absolute;
+			top: -3px;
+			left: 0;
+			z-index: 1;
+		}
+
+		.slider__num {
+			font-size: 24px;
+			font-weight: 700;
+		}
+
+		/* Main moments slides */
+
+		.main__slider {
+			background: linear-gradient(to bottom right, cyan, 5%, black, black);
+			padding: 200px 0;
+		}
+
+		#slider { /*положение слайдера*/
+			position: relative;
+			text-align: center;
+		}
+
+		#slider { /*центровка слайдера*/
+			margin: 0 auto;
+		}
+
+		#slides article { /*все изображения справа друг от доруга*/
+			width: 20%;
+			float: left;
+		}
+
+		#slides .image { /*устанавливает общий размер блока с изображениями*/
+			width: 500%;
+			line-height: 0;
+		}
+
+
+		#overflow { /*сркывает все, что находится за пределами этого блока*/
+			width: 100%;
+			overflow: hidden;
+		}
+
+		article img { /*размер изображений слайдера*/
+			width: 100%;
+		}
+
+		#desktop:checked ~ #slider { /*размер всего слайдера*/
+			max-width: 960px; /*максимальнная длинна*/
+		}
+
+		/*настройка переключения и положения для левой стрелки*/
+		/*если свич1-5 активны, то идет обращение к лейблу из блока с id контролс*/
+		#switch1:checked ~ #controls label:nth-child(3),
+		#switch2:checked ~ #controls label:nth-child(1),
+		#switch3:checked ~ #controls label:nth-child(2) {
+			background: url('assets/images/prev.png') no-repeat; /*заливка фона картинкой без повторений*/
+			float: left;
+			margin: -50px 0 0 -84px; /*сдвиг влево*/
+			display: block;
+			height: 68px;
+			width: 68px;
+		}
+
+		/*настройка переключения и положения для правой стрелки*/
+		#switch1:checked ~ #controls label:nth-child(2),
+		#switch2:checked ~ #controls label:nth-child(3),
+		#switch3:checked ~ #controls label:nth-child(1) {
+			background: url('assets/images/next.png') no-repeat; /*заливка фона картинкой без повторений*/
+			float: right;
+			margin: -50px -84px 0 0; /*сдвиг вправо*/
+			display: block;
+			height: 68px;
+			width: 68px;
+		}
+
+		label, a { /*при наведении на стрелки или переключатели - курсор изменится*/
+			cursor: pointer;
+		}
+
+		.main__slider input { /*скрывает стандартные инпуты (чекбоксы) на странице*/
+			display: none;
+		}
+
+		/*позиция изображения при активации переключателя*/
+		#switch1:checked ~ #slides .image {
+			margin-left: 0;
+		}
+
+		#switch2:checked ~ #slides .image {
+			margin-left: -100%;
+		}
+
+		#switch3:checked ~ #slides .image {
+			margin-left: -200%;
+		}
+
+		#controls { /*положение блока всех управляющих элементов*/
+			margin: -25% 0 0 0;
+			width: 100%;
+			height: 50px;
+		}
+
+		#active label { /*стиль отдельного переключателя*/
+			border-radius: 10px; /*скругление углов*/
+			display: inline-block; /*расположение в строку*/
+			width: 25px;
+			height: 10px;
+			background: #bbb;
+		}
+
+		#active { /*расположение блока с переключателями*/
+			margin: 23% 0 0;
+			text-align: center;
+		}
+
+			#active label:hover { /*поведение чекбокса при наведении*/
+				background: #76c8ff;
+				border-color: cyan !important; /*выполнение в любом случае*/
+			}
+
+		/*цвет активного лейбла при активации чекбокса*/
+		#switch1:checked ~ #active label:nth-child(1),
+		#switch2:checked ~ #active label:nth-child(2),
+		#switch3:checked ~ #active label:nth-child(3) {
+			background: darkcyan;
+			border-color: darkcyan !important;
+		}
+
+		#slides .image { /*анимация пролистывания изображений*/
+			transition: all 800ms cubic-bezier(0.770, 0.000, 0.175, 1.000);
+		}
+
+		#controls label:hover { /*прозрачность стрелок при наведении*/
+			opacity: 0.6;
+		}
+
+		#controls label { /*прозрачность стрелок при отводе курсора*/
+			transition: opacity 0.2s ease-out;
+		}
+
+		/* Section */
+		.section {
+			background: linear-gradient(transparent, DimGray 100%), url("assets/images/logo5.jpg") center no-repeat;
+			-webkit-background-size: cover;
+			padding: 100px 0;
+		}
+
+		.section__header {
+			width: 100%;
+			max-width: 950px;
+			margin: 0 auto 40px;
+			text-align: center;
+		}
+
+		.section__suptitle {
+			padding-top: 30px;
+			font-size: 30px;
+			color: #ffffff;
+		}
+
+		.section__title {
+			font-size: 36px;
+			font-weight: 700;
+			color: #ffffff;
+			text-transform: uppercase;
+		}
+
+		.section__title:after {
+			content: "";
+			display: block;
+			width: 60px;
+			height: 3px;
+			margin: 30px auto;
+			background-color: #808080;
+		}
+
+		.section__text {
+			font-size: 15px;
+			color: #999;
+		}
+
+		/* Table */
+
+		table {
+			padding-top: 10px;
+			font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+			text-align: center;
+			border-collapse: separate;
+			background: #800000;
+			color: #800000;
+		}
+
+		th {
+			color: #ffffff;
+			font-size: 13px;
+			padding: 10px;
+		}
+
+		td {
+			font-size: 13px;
+			background: #D3D3D3;
+			width: 120px;
+			padding: 10px;
+		}
+
+		.table_one {
+			display: inline;
+		}
+
+		.table_two {
+			display: inline;
+		}
+
+		.table_three {
+			display: inline;
+		}
+
+			.table_three td {
+				width: 180px;
+			}
+
+		table a {
+			display: inline-block;
+			vertical-align: top;
+			position: relative;
+			color: FireBrick;
+			text-decoration: none;
+			transition: color .1s linear;
+		}
+
+		table a:after {
+			content: "";
+			display: block;
+			width: 100%;
+			height: 3px;
+			background-color: FireBrick;
+			opacity: 0;
+			position: absolute;
+			top: 100%;
+			left: 0;
+			z-index: 1;
+			transition: opacity .5s linear;
+		}
+
+		table a:hover {
+			color: DarkRed;
+		}
+
+		table a:hover:after,
+		table a.active:after {
+			opacity: 1;
+		}
+
+		table a.active {
+			color: DarkRed;
+		}
+
+		/* Speakers */
+
+		.speak {
+			background: linear-gradient(DimGrey, black, black);
+		}
+
+		.speakers {
+			padding: 150px 0;
+			width: 100%;
+			max-width: 1500px;
+			margin: 0 auto;
+			text-align: center;
+		}
+
+		.speakers__inline {
+			margin: 10px 7px;
+			display: inline-block;
+			height: 300px;
+			width: 300px;
+		}
+
+		#spk1 {
+			background: url("assets/images/speaker_1.jpg") no-repeat center center;
+			background-size: auto 300px;
+		}
+
+		#spk2 {
+			background: url("assets/images/speaker_2.jpg") no-repeat center top 30%;
+			background-size: 300px auto;
+		}
+
+		#spk3 {
+			background: url("assets/images/speaker_3.jpg") no-repeat center center;
+			background-size: 400px auto;
+		}
+
+		#spk4 {
+			background: url("assets/images/speaker_4.jpg") no-repeat center top 10%;
+			background-size: 300px auto;
+		}
+
+		#spk5 {
+			background: url("assets/images/speaker_5.jpg") no-repeat center top 20%;
+			background-size: 300px auto;
+		}
+
+		#spk6 {
+			background: url("assets/images/speaker_6.jpg") no-repeat center center;
+			background-size: 300px auto;
+		}
+
+		#spk7 {
+			background: url("assets/images/speaker_7.jpg") no-repeat center center;
+			background-size: 300px auto;
+		}
+
+		#spk8 {
+			background: url("assets/images/speaker_8.jpg") no-repeat center center;
+			background-size: 300px auto;
+		}
+
+		.speakers__inline p {
+			opacity: 0;
+			font-size: 15px;
+			font-weight: 700px;
+			font-family: 'Segoe UI';
+			height: 300px;
+			text-align: center;
+			display: table-cell;
+			vertical-align: middle;
+			color: #fff;
+			transition: .5s ease;
+		}
+
+		.speakers__inline:hover p {
+			opacity: 1;
+			background: rgba(0, 0, 0, 0.9);
+		}
+
+		/* Sponsors */
+
+		.sponsors {
+			background: black;
+			padding: 150px 0;
+			width: 100%;
+			margin: 0 auto;
+			text-align: center;
+		}
+
+		.sponsors__inline {
+			margin: 10px 7px;
+			display: inline-block;
+			height: 500px;
+			width: 500px;
+		}
+
+		#logo1 {
+			background: url("assets/images/logo firn m.png") no-repeat center center;
+			background-size: 400px auto;
+		}
+
+        #logo2 {
+            background: url("assets/images/r-pharm_logo_rus.jpg") no-repeat center center;
+            background-size: 250px auto;
+        }
+
+        .sponsors__inline p {
+            opacity: 0;
+            font-size: 15px;
+            font-weight: 700;
+            font-family: 'Segoe UI';
+            height: 500px;
+            width: 500px;
+            text-align: center;
+            display: table-cell;
+            vertical-align: middle;
+            color: #fff;
+            transition: .5s ease;
+        }
+
+		.sponsors__inline:hover p {
+			opacity: 1;
+			background: rgba(0, 0, 0, 0.9);
+		}
+
+		@font-face {
+			font-family: Lobster; /* Имя шрифта */
+			src: url(assets/fonts/lobster.ttf); /* Путь к файлу со шрифтом */
+		}
+	</style>
+</head>
+<body>
+<header class="header">
+    <div class="container">
+        <div class="header__inner">
+			<a class="nav__link header__logo"  href="https://www.influenza.spb.ru/?change_lng=1">"ФГБУ "НИИ гриппа им. А. А. Смородинцева" Минздрава России"</a>
+            <nav class="nav">
+                <a class="nav__link" href="Programma.pdf" download="">Скачать программу</a>
+                <a class="nav__link" href="https://forms.yandex.ru/u/631027281cde2c4ef6424da1/">Регистрация</a>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<div class="intro">
+    <div class="container">
+        <div class="intro__inner">
+            <h1 class="intro__title">Школа молодых ученых</h1>
+            <a class="nav__link" href="https://losevopark.ru/">7 - 9 октября 2022 года <br> Туристическая база "Лосево парк"</a>
+        </div>
+    </div>
+    <div class="slider">
+        <div class="container">
+            <div class="slider__inner">
+                <div class="slider__item active">
+                    <span class="slider__num">01</span>
+                    Партнеры мероприятия
+                </div>
+                <div class="slider__item">
+                    <span class="slider__num">02</span>
+                    Основные моменты 
+                </div>
+                <div class="slider__item">
+                    <span class="slider__num">03</span>
+                    Программа
+                </div>
+                <div class="slider__item">
+                    <span class="slider__num">04</span>
+                    Спикеры
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!-- /.intro -->
+
+<div class="sponsors">
+	<h2 class="section__title">Партнеры мероприятия</h2>
+	<div class="sponsors__inline" id="logo1">
+		<p>Биотехнологическая компания ФИРН М</p>
+	</div>
+	<div class="sponsors__inline" id="logo2">
+		<p>Фармацевтическая компания Р-ФАРМ</p>
+	</div>
+</div>
+
+<div class="main__slider">
+	<input checked type="radio" name="respond" id="desktop">
+		<article id="slider">
+		<h2 class="section__title">Основные моменты</h2>
+				<input checked type="radio" name="slider" id="switch1">
+				<input type="radio" name="slider" id="switch2">
+				<input type="radio" name="slider" id="switch3">
+			<div id="slides">
+				<div id="overflow">
+					<div class="image">
+						<article><img src="assets/images/1.jpg"></article>
+						<article><img src="assets/images/2.jpg"></article>
+						<article><img src="assets/images/3.jpg"></article>
+					</div>
+				</div>
+			</div>
+			<div id="controls">
+				<label for="switch1"></label>
+				<label for="switch2"></label>
+				<label for="switch3"></label>
+			</div>
+			<div id="active">
+				<label for="switch1"></label>
+				<label for="switch2"></label>
+				<label for="switch3"></label>
+			</div>
+		</article>
+</div>
+
+<section class="section">
+	<div class="section__header">
+		<h3 class="section__suptitle">Программа</h3>
+		<h2 class="section__title">Школы молодых ученых</h2>
+	</div>
+	<div align="center">
+		<table class="table_one">
+			<th>7 октября</th>
+			<tr>
+				<td>10:00</td>
+				<td colspan = "2">Выезд от НИИ гриппа</td>
+			</tr>
+			<tr>
+				<td>12:00-12:30</td>
+				<td colspan = "2">Приезд на туристическую базу</td>
+			</tr>
+			<tr>
+				<td>13:00-13:30</td>
+				<td colspan = "2">Обеденный перерыв</td>
+			</tr>
+			<tr>
+				<th align="center">Время</th>
+				<th align="center">Тема выступления</th>
+				<th align="center">Спикер</th>
+			</tr>
+			<tr>
+				<td>14:00-14:10</td>
+				<td>Торжественное открытие <br> школы молодых ученых</td>
+				<td rowspan="2"><a href="#spk">Лиознов Д.А.,</a> "ФГБУ "НИИ гриппа им. А. А. Смородинцева" Минздрава России"</td>
+			</tr>
+			<tr>
+				<td>14:20-15:00</td>
+				<td>История НИИ гриппа им. А. А. Смородинцева</td>
+			</tr>
+			<tr>
+				<td>15:20-16:40</td>
+				<td>Поствакцинальный иммунитет</td>
+				<td><a href="#spk">Шурыгина А.-П.С.,</a> "ФГБУ "НИИ гриппа им. А. А. Смородинцева" Минздрава России"</td>
+			</tr>
+			<tr>
+				<th colspan = "3" align="center">Окончание лекционного дня</th>
+			</tr>
+			<tr>
+				<td>17:00-18:00</td>
+				<td colspan = "2">Заселение в номера</td>
+			</tr>
+			<tr>
+				<td>18:00-19:00</td>
+				<td colspan = "2">Ужин</td>
+			</tr>
+			<tr>
+				<td>19:30-22:30</td>
+				<td colspan = "2">Teambuilding</td>
+			</tr>
+		</table>
+		
+		<table class="table_two">
+			<th>8 октября</th>
+			<tr>
+				<td>10:00-11:00</td>
+				<td colspan="2">Завтрак</td>
+			</tr>
+			<tr>
+				<th align="center">Время</th>
+				<th align="center">Тема выступления</th>
+				<th align="center">Спикер</th>
+			</tr>
+			</tr>
+			<tr>
+				<td>11:00-12:20</td>
+				<td colspan="2">Секретная лекция</td>
+			</tr>
+			<tr>
+				<td>12:40-14:00</td>
+				<td>Статистика</td>
+				<td><a href="#spk2">Вербицкая Е.В.,</a> ФГБОУ ВО "ПСПБГМУ" им. И.П. Павлова Минздрава России</td>
+			</tr>
+			<tr>
+				<td>14:20-15:20</td>
+				<td colspan="2">Обед</td>
+			</tr>
+			<tr>
+				<td>15:20-16:20</td>
+				<td colspan="2">Перерыв</td>
+			</tr>
+			<tr>
+				<th align="center">Время</th>
+				<th align="center">Тема выступления</th>
+				<th align="center">Спикер</th>
+			</tr>
+			<tr>
+				<td>16:30-17:50</td>
+				<td>Планирование <br> научного <br> эксперимента</td>
+				<td><a href="#spk1">Сергеева М.В.,</a> "ФГБУ "НИИ гриппа им. А. А. Смородинцева" Минздрава России"</td>
+			</tr>
+			<tr>
+				<td>18:10-19:30</td>
+				<td>Базы данных</td>
+				<td><a href="#spk">Комиссаров А.Б.,</a> "ФГБУ "НИИ гриппа им. А. А. Смородинцева" Минздрава России"</td>
+			</tr>
+			<tr>
+				<th colspan="3" align="center">Окончание лекционного дня</th>
+			</tr>
+			<tr>
+				<td>19:40-20:40</td>
+				<td colspan="2">Ужин</td>
+			</tr>
+			<tr>
+				<td>21:00-23:00</td>
+				<td colspan="2">Вечер настольных игр</td>
+			</tr>
+		</table>
+		<table class = "table_three">
+				<th>9 октября</th>
+			<tr>
+				<td>9:00-11:00</td>
+				<td colspan = "2">Завтрак</td>
+			</tr>
+			<tr>
+				<td>до 12:00</td>
+				<td colspan = "2">Выселение из номеров</td>
+			</tr>
+			<tr>
+				<td>13:00</td>
+				<td colspan = "2">Выезд в Санкт-Петербурга</td>
+			</tr>
+		</table>
+	</div>
+</section>
+
+<section class = "speak" id = "spk">
+	<div class = "speakers">
+	<h2 class="section__title">Спикеры</h2>
+		<div class="speakers__inline" id = "spk1">
+			<p>Лиознов Дмитрий Анатольевич, доктор медицинских наук, профессор, директор "ФГБУ "НИИ гриппа им. А. А. Смородинцева" Минздрава России"</p>
+		</div>
+		<div class="speakers__inline" id = "spk2">
+			<p>Шурыгина Анна-Полина Сергеевна, старший научный сотрудник лаборатории векторных вакцин "ФГБУ "НИИ гриппа им. А. А. Смородинцева" Минздрава России"</p>
+		</div>
+		<div class="speakers__inline" id = "spk3">
+		</div>
+		<div class="speakers__inline" id = "spk4">
+			<p>Вербицкая Елена Владимировна, доцент кафедры клинической фармакологии и доказательной медицины ФГБОУ ВО "ПСПБГМУ"</p>
+		</div>
+		<div class="speakers__inline" id = "spk5">
+			<p>Сергеева Мария Валерьевна, кандидат биологических наук, ведущий научный сотрудник лаборатории векторных вакцин "ФГБУ "НИИ гриппа им. А. А. Смородинцева" Минздрава России"</p>
+		</div>
+		<div class="speakers__inline" id = "spk6">
+			<p>Комиссаров Андрей Борисович, заведующий лабораторией молекулярной вирусологии "ФГБУ "НИИ гриппа им. А. А. Смородинцева" Минздрава России"</p>
+		</div>
+	</div>
+</section>
+</body>
+</html>
